@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.saikikwok.minilinkedin.MainActivity">
+
     <LinearLayout
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
@@ -15,55 +16,53 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/basic_info"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:id="@+id/name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="24sp"
-                        tools:text="Saiki"/>
-
-                    <ImageButton
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
-                        android:background="@android:color/background_dark"
-                        android:contentDescription="basic_info_edit"/>
-
-                </LinearLayout>
+                android:orientation="horizontal"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/profile_image">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:textSize="24sp"
-                    tools:text="xxx@xxx.com"/>
+                    tools:text="Saiki"/>
+
+                <ImageButton
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:background="@android:color/background_dark"
+                    android:contentDescription="basic_info_edit"/>
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/name"
+                android:textSize="24sp"
+                tools:text="xxx@xxx.com"/>
+
             <ImageView
+                android:id="@+id/profile_image"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
+                android:layout_alignParentRight="true"
                 android:contentDescription="profile_photo"
                 android:background="@android:color/holo_blue_light"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -26,7 +26,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/profile_image">
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/profile_image"
+                android:layout_toStartOf="@+id/profile_image">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -39,8 +41,9 @@
                     android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:src="@drawable/ic_border_color_black_18dp"
-                    android:contentDescription="basic_info_edit"
+                    android:contentDescription="@string/edit_basic_info"
                     android:background="?attr/selectableItemBackground"/>
 
             </LinearLayout>
@@ -51,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@+id/name"
                 android:textSize="24sp"
                 tools:text="xxx@xxx.com"/>
@@ -60,7 +64,8 @@
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_alignParentRight="true"
-                android:contentDescription="profile_photo"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="@string/profile_photo"
                 android:src="@drawable/G12_Girl"
                 android:background="?attr/selectableItemBackground"/>
 
@@ -81,7 +86,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    tools:text="Education"
+                    tools:text="@string/section_education"
                     android:textSize="24sp"
                     android:textAllCaps="true"
                     />
@@ -90,7 +95,7 @@
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
-                    android:contentDescription="education_edit"
+                    android:contentDescription="@string/edit_education"
                     android:src="@drawable/ic_add_black_18dp"
                     android:background="?attr/selectableItemBackground"/>
 
@@ -122,7 +127,7 @@
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
-                    android:contentDescription="school_edit"
+                    android:contentDescription="@string/edit_school"
                     android:background="?attr/selectableItemBackground"
                     android:src="@drawable/ic_border_color_black_18dp"/>
 

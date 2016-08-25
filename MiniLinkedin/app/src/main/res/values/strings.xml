@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MiniLinkedin</string>
+    <string name="section_education">Education</string>
+    <string name="edit_education">Edit Education</string>
+    <string name="profile_photo">Profile Photo</string>
+    <string name="edit_basic_info">Edit Basic Information</string>
+    <string name="edit_school">Edit School</string>
 </resources>

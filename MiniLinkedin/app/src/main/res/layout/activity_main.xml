@@ -32,7 +32,7 @@
                 android:layout_toStartOf="@+id/profile_image">
 
                 <TextView
-                    android:id="@+id/name"
+                    android:id="@+id/basic_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
@@ -69,7 +69,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:contentDescription="@string/profile_photo"
-                android:src="@drawable/G12_Girl"
+                android:src="@drawable/g12_girl"
                 android:background="?attr/selectableItemBackground"/>
 
         </RelativeLayout>
@@ -92,7 +92,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    tools:text="@string/section_education"
+                    android:text="@string/section_education"
                     android:textSize="24sp"
                     android:textAllCaps="true"
                     />

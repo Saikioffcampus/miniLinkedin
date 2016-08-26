@@ -2,8 +2,13 @@ package com.example.saikikwok.minilinkedin;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.saikikwok.minilinkedin.Model.BasicInfo;
+import com.example.saikikwok.minilinkedin.Model.Education;
+import com.example.saikikwok.minilinkedin.R;
 import com.example.saikikwok.minilinkedin.Util.ListUtil;
 
 import java.text.ParseException;
@@ -15,33 +20,49 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private BasicInfo basicInfo;
-    private Education education;
+    private List<Education> educations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
         fakeData();
         setupUI();
     }
 
-    private void setupUI() {
+    private void setupEducation() {
+        LinearLayout educationLayout = (LinearLayout)findViewById(R.id.education_section);
+        for (Education education : educations) {
+            educationLayout.addView(getEducation(education));
+        }
+    }
 
-        TextView thenameview = ((TextView)findViewById(R.id.basic_name));
-        thenameview.setText(basicInfo.getName());
-        ((TextView)findViewById(R.id.email)).setText(basicInfo.getEmail());
+    private View getEducation(Education education) {
+        View view = getLayoutInflater().inflate(R.layout.education_item, null);
+
         SimpleDateFormat sdf = new SimpleDateFormat("MM/yyyy");
         String startdateInString = sdf.format(education.getStartdate());
         String enddateInString = sdf.format(education.getEnddate());
         String dateInString = " (" + startdateInString + " - " + enddateInString + ")";
-        ((TextView)findViewById(R.id.school)).setText(education.getSchool());
-        ((TextView)findViewById(R.id.school_period)).setText(dateInString);
-        ((TextView)findViewById(R.id.courses)).setText(ListUtil.List2String(education.getCourses()));
+        ((TextView)view.findViewById(R.id.school)).setText(education.getSchool());
+        ((TextView)view.findViewById(R.id.school_period)).setText(dateInString);
+        ((TextView)view.findViewById(R.id.courses)).setText(ListUtil.List2String(education.getCourses()));
+        return view;
+    }
 
+    private void setupUI() {
+        setContentView(R.layout.activity_main);
+        TextView thenameview = ((TextView)findViewById(R.id.basic_name));
+        thenameview.setText(basicInfo.getName());
+        ((TextView)findViewById(R.id.email)).setText(basicInfo.getEmail());
+        setupEducation();
     }
 
     private void fakeData() {
         this.basicInfo = new BasicInfo("Saiki Kwok", "saiki@xxx.com");
+        this.educations = new LinkedList<>();
+        Education education1 = null;
+        Education education2 = null;
         List<String> courses = new LinkedList<>();
         courses.add("Computer System");
         courses.add("Algorithm");
@@ -52,9 +73,15 @@ public class MainActivity extends AppCompatActivity {
         try {
             Date startdate = sdf.parse(startdateInString);
             Date enddate = sdf.parse(enddateInString);
-            education = new Education("NEU", startdate, enddate, courses);
+            education1 = new Education("NEU", startdate, enddate, courses);
+            education2 = new Education("GDUFS", startdate, enddate, courses);
+            educations.add(education1);
+            educations.add(education2);
         } catch (ParseException e) {
-            education = new Education("NEU", new Date(), new Date(), courses);
+            education1 = new Education("NEU", new Date(), new Date(), courses);
+            education2 = new Education("GDUFS", new Date(), new Date(), courses);
+            educations.add(education1);
+            educations.add(education2);
         }
 
 

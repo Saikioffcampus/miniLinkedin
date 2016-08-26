@@ -1,4 +1,4 @@
-package com.example.saikikwok.minilinkedin;
+package com.example.saikikwok.minilinkedin.Model;
 
 import java.util.Date;
 import java.util.List;

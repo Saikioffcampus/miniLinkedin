@@ -5,4 +5,10 @@
     <string name="profile_photo">Profile Photo</string>
     <string name="edit_basic_info">Edit Basic Information</string>
     <string name="edit_school">Edit School</string>
+    <string name="education_school">School</string>
+    <string name="education_major">Major</string>
+    <string name="education_start_date">Start Date</string>
+    <string name="education_end_date">End Date</string>
+    <string name="education_courses">Courses</string>
+    <string name="action_save">Save</string>
 </resources>

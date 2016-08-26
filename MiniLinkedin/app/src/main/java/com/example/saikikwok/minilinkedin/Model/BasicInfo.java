@@ -1,4 +1,4 @@
-package com.example.saikikwok.minilinkedin;
+package com.example.saikikwok.minilinkedin.Model;
 
 /**
  * Created by saikikwok on 8/24/16.

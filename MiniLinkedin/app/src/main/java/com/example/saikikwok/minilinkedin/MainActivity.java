@@ -14,9 +14,12 @@ import com.example.saikikwok.minilinkedin.Model.BasicInfo;
 import com.example.saikikwok.minilinkedin.Model.Education;
 import com.example.saikikwok.minilinkedin.R;
 import com.example.saikikwok.minilinkedin.Util.ListUtil;
+import com.example.saikikwok.minilinkedin.Util.ModelUtils;
+import com.google.gson.reflect.TypeToken;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQ_CODE_EDUCATION_EDIT = 100;
 
+    private static final String RESUME_INFO_EDUCATIONS = "educations";
+
     private BasicInfo basicInfo;
     private List<Education> educations;
 
@@ -32,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        fakeData();
+//        fakeData();
+        loadData();
         setupUI();
     }
 
@@ -58,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         if (!found) {
             educations.add(education);
         }
+        ModelUtils.save(this, RESUME_INFO_EDUCATIONS, educations);
         setupEducation();
     }
 
@@ -109,6 +116,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQ_CODE_EDUCATION_EDIT);
             }
         });
+    }
+
+    private void loadData() {
+        this.basicInfo = new BasicInfo("Saiki Kwok", "saiki@xxx.com");
+        List<Education> savedEducation = ModelUtils.read(this, RESUME_INFO_EDUCATIONS, new TypeToken<List<Education>>(){});
+        educations = savedEducation == null? new LinkedList<Education>() : savedEducation;
+
     }
 
     private void fakeData() {

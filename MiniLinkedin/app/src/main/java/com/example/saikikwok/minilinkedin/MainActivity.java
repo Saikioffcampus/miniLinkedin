@@ -1,5 +1,6 @@
 package com.example.saikikwok.minilinkedin;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +22,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQ_CODE_EDUCATION_EDIT = 100;
+
     private BasicInfo basicInfo;
     private List<Education> educations;
 
@@ -32,8 +35,19 @@ public class MainActivity extends AppCompatActivity {
         setupUI();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQ_CODE_EDUCATION_EDIT && resultCode == Activity.RESULT_OK) {
+            Education education = data.getParcelableExtra(EducationEditActivity.KEY_EDUCATION);
+            educations.add(education);
+            setupEducation();
+        }
+    }
+
     private void setupEducation() {
         LinearLayout educationLayout = (LinearLayout)findViewById(R.id.education_section);
+        educationLayout.removeAllViews();
         for (Education education : educations) {
             educationLayout.addView(getEducation(education));
         }
@@ -64,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, EducationEditActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, REQ_CODE_EDUCATION_EDIT);
             }
         });
     }

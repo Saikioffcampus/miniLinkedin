@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -40,9 +41,24 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQ_CODE_EDUCATION_EDIT && resultCode == Activity.RESULT_OK) {
             Education education = data.getParcelableExtra(EducationEditActivity.KEY_EDUCATION);
-            educations.add(education);
-            setupEducation();
+            updateEducation(education);
         }
+    }
+
+    private void updateEducation(Education education) {
+        boolean found = false;
+        for (int i = 0; i < educations.size(); i++) {
+            Education e = educations.get(i);
+            if (TextUtils.equals(e.getId(), education.getId())) {
+                educations.set(i, education);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            educations.add(education);
+        }
+        setupEducation();
     }
 
     private void setupEducation() {
@@ -53,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private View getEducation(Education education) {
+    private View getEducation(final Education education) {
         View view = getLayoutInflater().inflate(R.layout.education_item, null);
 
         SimpleDateFormat sdf = new SimpleDateFormat("MM/yyyy");
@@ -63,6 +79,18 @@ public class MainActivity extends AppCompatActivity {
         ((TextView)view.findViewById(R.id.school)).setText(education.getSchool());
         ((TextView)view.findViewById(R.id.school_period)).setText(dateInString);
         ((TextView)view.findViewById(R.id.courses)).setText(ListUtil.List2String(education.getCourses()));
+
+        // pass Education instance to EducationEditActivity
+        view.findViewById(R.id.edit_education_info_btn).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, EducationEditActivity.class);
+                intent.putExtra(EducationEditActivity.KEY_EDUCATION, education);
+                startActivityForResult(intent, REQ_CODE_EDUCATION_EDIT);
+            }
+        });
+
         return view;
     }
 

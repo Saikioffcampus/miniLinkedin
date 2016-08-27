@@ -19,4 +19,14 @@ public class ListUtil {
         return sb.toString();
     }
 
+    public static <E> String List2StringInTextView(List<E> list) {
+        StringBuilder sb = new StringBuilder();
+        for (E each : list) {
+            sb.append(each.toString());
+            sb.append("\n");
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
+    }
+
 }

@@ -33,7 +33,7 @@
 
 
             <ImageButton
-                android:id="@+id/edit_school_info_btn"
+                android:id="@+id/edit_education_info_btn"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
                 android:layout_gravity="center_vertical"

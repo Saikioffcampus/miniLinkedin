@@ -51,6 +51,14 @@ public class Education implements Parcelable {
         }
     };
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getSchool() {
         return school;
     }
@@ -96,4 +104,5 @@ public class Education implements Parcelable {
     public int describeContents() {
         return 0;
     }
+
 }

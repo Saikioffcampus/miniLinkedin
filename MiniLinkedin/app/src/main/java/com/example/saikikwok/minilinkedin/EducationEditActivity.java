@@ -29,6 +29,20 @@ public class EducationEditActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_education_edit);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        education = getIntent().getParcelableExtra(KEY_EDUCATION);
+        if (education != null) {
+            setupUI();
+        }
+        setTitle(education == null? "Add Education" : "Edit Education");
+    }
+
+    private void setupUI() {
+        ((EditText)findViewById(R.id.education_edit_school)).setText(education.getSchool());
+        ((EditText)findViewById(R.id.education_edit_start_date)).setText(DateUtil.date2String(education.getStartdate()));
+        ((EditText)findViewById(R.id.education_edit_end_date)).setText(DateUtil.date2String(education.getEnddate()));
+        ((EditText)findViewById(R.id.education_edit_courses)).setText(ListUtil.List2StringInTextView(education.getCourses()));
+
     }
 
     @Override

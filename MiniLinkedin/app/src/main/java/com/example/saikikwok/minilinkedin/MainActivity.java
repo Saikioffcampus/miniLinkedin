@@ -1,8 +1,10 @@
 package com.example.saikikwok.minilinkedin;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -56,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
         thenameview.setText(basicInfo.getName());
         ((TextView)findViewById(R.id.email)).setText(basicInfo.getEmail());
         setupEducation();
+
+        ImageButton addEducationBtn = (ImageButton) findViewById(R.id.edit_education_btn);
+        addEducationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, EducationEditActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void fakeData() {
